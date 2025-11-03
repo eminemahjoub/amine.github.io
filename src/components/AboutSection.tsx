@@ -1,6 +1,7 @@
 import { MapPin, GraduationCap, Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { personalInfo } from "@/data/portfolio";
+import profileImg from "@/amine mahjoub image.png";
 
 export const AboutSection = () => {
   return (
@@ -17,16 +18,16 @@ export const AboutSection = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Photo Placeholder */}
+            {/* Profile Photo */}
             <div className="animate-scale-in">
               <div className="relative">
-                <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center overflow-hidden card-glow">
-                  <div className="text-center p-8">
-                    <GraduationCap className="h-32 w-32 mx-auto text-primary mb-4" />
-                    <p className="text-sm text-muted-foreground">
-                      Profile Photo
-                    </p>
-                  </div>
+                <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 overflow-hidden card-glow">
+                  <img
+                    src={profileImg}
+                    alt="Amine Mahjoub"
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                  />
                 </div>
                 <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
               </div>
@@ -69,7 +70,7 @@ export const AboutSection = () => {
                     <div>
                       <p className="font-semibold">Interests</p>
                       <p className="text-sm text-muted-foreground">
-                        AI, IoT, Smart Cities, CubeSat, Blockchain, Fintech, R&D
+                        AI, Blockchain, Web Development, R&D
                       </p>
                     </div>
                   </div>
