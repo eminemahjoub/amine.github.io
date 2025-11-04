@@ -71,6 +71,15 @@ export const PortfolioBrowser = () => {
                   Blog
                 </a>
                 <a
+                  href={personalInfo.social.credly}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white text-sm transition-colors flex items-center gap-2"
+                >
+                  <Award className="w-4 h-4" />
+                  Credly
+                </a>
+                <a
                   href="#"
                   className="px-4 py-2 bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white text-sm transition-colors flex items-center gap-2"
                 >
@@ -81,16 +90,16 @@ export const PortfolioBrowser = () => {
             </div>
           </div>
 
-          {/* Content Cards */}
-          <div className="space-y-6">
+          {/* Content Cards - Folder Style */}
+          <div className="space-y-4">
             {/* AI & Intelligent Systems Research */}
             <div 
-              className="bg-[#2d2d2d]/80 backdrop-blur-sm rounded-xl p-6 border border-orange-500/20 hover:border-orange-500/50 transition-colors cursor-pointer"
+              className="bg-[#2d2d2d]/80 backdrop-blur-sm rounded-lg p-5 border-l-4 border-orange-500 hover:border-orange-400 hover:bg-[#3d3d3d]/80 transition-all cursor-pointer shadow-lg"
               onClick={() => setExpandedCard(expandedCard === "research" ? null : "research")}
             >
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Shield className="w-6 h-6 text-red-400" />
+                <div className="w-10 h-10 bg-red-500/20 rounded flex items-center justify-center flex-shrink-0 border border-red-500/30">
+                  <Shield className="w-5 h-5 text-red-400" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-bold text-white mb-2">AI & Intelligent Systems Research</h3>
@@ -101,10 +110,12 @@ export const PortfolioBrowser = () => {
                   {expandedCard === "research" && (
                     <div className="mt-6 pt-6 border-t border-gray-700 space-y-4">
                       <div>
-                        <h4 className="text-lg font-semibold text-white mb-3">Research Projects</h4>
+                        <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                          <span className="text-orange-400">📁</span> Research Projects
+                        </h4>
                         <div className="space-y-3">
                           {research.map((r) => (
-                            <div key={r.id} className="bg-[#1a1a1a] p-4 rounded-lg border border-gray-700">
+                            <div key={r.id} className="bg-[#1a1a1a] p-4 rounded border-l-2 border-gray-600 hover:border-orange-500 transition-colors">
                               <div className="flex items-start justify-between mb-2">
                                 <h5 className="text-white font-semibold">{r.title}</h5>
                                 <span className={`text-xs px-2 py-1 rounded ${
@@ -122,10 +133,12 @@ export const PortfolioBrowser = () => {
                         </div>
                       </div>
                       <div>
-                        <h4 className="text-lg font-semibold text-white mb-3">All Projects ({projects.length})</h4>
+                        <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                          <span className="text-orange-400">📁</span> All Projects ({projects.length})
+                        </h4>
                         <div className="grid grid-cols-2 gap-3">
                           {projects.map((project) => (
-                            <div key={project.id} className="bg-[#1a1a1a] p-4 rounded-lg border border-gray-700">
+                            <div key={project.id} className="bg-[#1a1a1a] p-4 rounded border-l-2 border-gray-600 hover:border-orange-500 transition-colors">
                               <div className="flex items-start justify-between mb-2">
                                 <h5 className="text-white font-semibold text-sm">{project.title}</h5>
                                 {project.featured && (
@@ -160,10 +173,12 @@ export const PortfolioBrowser = () => {
                         </div>
                       </div>
                       <div>
-                        <h4 className="text-lg font-semibold text-white mb-3">Publications</h4>
+                        <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                          <span className="text-orange-400">📁</span> Publications
+                        </h4>
                         <div className="space-y-3">
                           {publications.map((pub) => (
-                            <div key={pub.id} className="bg-[#1a1a1a] p-4 rounded-lg border border-gray-700">
+                            <div key={pub.id} className="bg-[#1a1a1a] p-4 rounded border-l-2 border-gray-600 hover:border-orange-500 transition-colors">
                               <div className="flex items-start justify-between mb-2">
                                 <h5 className="text-white font-semibold">{pub.title}</h5>
                                 <span className="text-xs text-gray-400">{pub.year}</span>
@@ -182,12 +197,12 @@ export const PortfolioBrowser = () => {
 
             {/* Professional Experience */}
             <div 
-              className="bg-[#2d2d2d]/80 backdrop-blur-sm rounded-xl p-6 border border-orange-500/20 hover:border-orange-500/50 transition-colors cursor-pointer"
+              className="bg-[#2d2d2d]/80 backdrop-blur-sm rounded-lg p-5 border-l-4 border-yellow-500 hover:border-yellow-400 hover:bg-[#3d3d3d]/80 transition-all cursor-pointer shadow-lg"
               onClick={() => setExpandedCard(expandedCard === "experience" ? null : "experience")}
             >
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Briefcase className="w-6 h-6 text-yellow-400" />
+                <div className="w-10 h-10 bg-yellow-500/20 rounded flex items-center justify-center flex-shrink-0 border border-yellow-500/30">
+                  <Briefcase className="w-5 h-5 text-yellow-400" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-bold text-white mb-2">Professional Experience</h3>
@@ -201,7 +216,7 @@ export const PortfolioBrowser = () => {
                   {expandedCard === "experience" && (
                     <div className="mt-6 pt-6 border-t border-gray-700 space-y-4">
                       {experience.map((exp) => (
-                        <div key={exp.id} className="bg-[#1a1a1a] p-4 rounded-lg border border-gray-700">
+                        <div key={exp.id} className="bg-[#1a1a1a] p-4 rounded border-l-2 border-gray-600 hover:border-yellow-500 transition-colors">
                           <div className="flex items-start justify-between mb-2">
                             <div className="flex-1">
                               <h4 className="text-white font-semibold text-lg mb-1">{exp.title}</h4>
@@ -232,12 +247,12 @@ export const PortfolioBrowser = () => {
 
             {/* Education */}
             <div 
-              className="bg-[#2d2d2d]/80 backdrop-blur-sm rounded-xl p-6 border border-orange-500/20 hover:border-orange-500/50 transition-colors cursor-pointer"
+              className="bg-[#2d2d2d]/80 backdrop-blur-sm rounded-lg p-5 border-l-4 border-red-500 hover:border-red-400 hover:bg-[#3d3d3d]/80 transition-all cursor-pointer shadow-lg"
               onClick={() => setExpandedCard(expandedCard === "education" ? null : "education")}
             >
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <GraduationCap className="w-6 h-6 text-red-400" />
+                <div className="w-10 h-10 bg-red-500/20 rounded flex items-center justify-center flex-shrink-0 border border-red-500/30">
+                  <GraduationCap className="w-5 h-5 text-red-400" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-bold text-white mb-2">Education</h3>
@@ -252,7 +267,7 @@ export const PortfolioBrowser = () => {
                   {expandedCard === "education" && (
                     <div className="mt-6 pt-6 border-t border-gray-700 space-y-4">
                       {education.map((edu) => (
-                        <div key={edu.id} className="bg-[#1a1a1a] p-4 rounded-lg border border-gray-700">
+                        <div key={edu.id} className="bg-[#1a1a1a] p-4 rounded border-l-2 border-gray-600 hover:border-red-500 transition-colors">
                           <div className="flex items-start justify-between mb-2">
                             <div className="flex-1">
                               <h4 className="text-white font-semibold text-lg mb-1">{edu.degree}</h4>
@@ -274,10 +289,12 @@ export const PortfolioBrowser = () => {
                         </div>
                       ))}
                       <div>
-                        <h4 className="text-lg font-semibold text-white mb-3">Certifications ({certifications.length})</h4>
+                        <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                          <span className="text-orange-400">📁</span> Certifications ({certifications.length})
+                        </h4>
                         <div className="grid grid-cols-2 gap-3">
                           {certifications.map((cert) => (
-                            <div key={cert.id} className="bg-[#1a1a1a] p-3 rounded-lg border border-gray-700">
+                            <div key={cert.id} className="bg-[#1a1a1a] p-3 rounded border-l-2 border-gray-600 hover:border-orange-500 transition-colors">
                               <h5 className="text-white font-semibold text-sm mb-1">{cert.title}</h5>
                               <p className="text-gray-300 text-xs mb-1">{cert.issuer} · {cert.year}</p>
                               <span className="text-xs text-gray-400">{cert.category}</span>
@@ -286,10 +303,12 @@ export const PortfolioBrowser = () => {
                         </div>
                       </div>
                       <div>
-                        <h4 className="text-lg font-semibold text-white mb-3">Awards</h4>
+                        <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                          <span className="text-orange-400">📁</span> Awards
+                        </h4>
                         <div className="space-y-3">
                           {awards.map((award) => (
-                            <div key={award.id} className="bg-[#1a1a1a] p-4 rounded-lg border border-gray-700">
+                            <div key={award.id} className="bg-[#1a1a1a] p-4 rounded border-l-2 border-gray-600 hover:border-orange-500 transition-colors">
                               <h5 className="text-white font-semibold mb-1">{award.title}</h5>
                               <p className="text-orange-400 text-sm mb-1">{award.organization} · {award.year}</p>
                               <p className="text-gray-300 text-sm">{award.description}</p>

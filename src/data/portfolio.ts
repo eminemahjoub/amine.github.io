@@ -12,6 +12,7 @@ export const personalInfo = {
     linkedin: "https://linkedin.com/in/eminemahjoub",
     github: "https://github.com/eminemahjoub",
     twitter: "https://twitter.com/eminemahjoub",
+    credly: "https://www.credly.com/users/aminemahjoub",
   },
 };
 
