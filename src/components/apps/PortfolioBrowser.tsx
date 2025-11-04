@@ -16,7 +16,7 @@ export const PortfolioBrowser = () => {
         </div>
         <div className="flex-1 bg-[#1a1a1a] rounded-lg px-3 py-1 text-xs text-gray-400 flex items-center gap-2 ml-4">
           <Globe className="w-3 h-3" />
-          <span>https://aminemahjoub.github.io</span>
+          <span>https://www.aminemahjoub.tech</span>
         </div>
       </div>
 
