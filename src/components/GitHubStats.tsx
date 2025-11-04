@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Github, Star, GitFork, Eye, TrendingUp, GitCommit } from "lucide-react";
+import { Github, Star, GitFork, Eye, TrendingUp } from "lucide-react";
 
 interface GitHubStats {
   followers: number;
@@ -7,8 +7,6 @@ interface GitHubStats {
   public_repos: number;
   total_stars: number;
   total_forks: number;
-  contributions: number;
-  total_commits: number;
 }
 
 export const GitHubStats = () => {
@@ -35,57 +33,12 @@ export const GitHubStats = () => {
         const totalStars = repos.reduce((sum: number, repo: any) => sum + repo.stargazers_count, 0);
         const totalForks = repos.reduce((sum: number, repo: any) => sum + repo.forks_count, 0);
         
-        // Fetch contributions from public events
-        // Note: This is an approximation based on public events
-        let totalCommits = 0;
-        let contributionsCount = 0;
-        
-        try {
-          // Fetch public events (limited to recent activity)
-          const eventsResponse = await fetch("https://api.github.com/users/eminemahjoub/events/public?per_page=100");
-          if (eventsResponse.ok) {
-            const events = await eventsResponse.json();
-            // Count PushEvents as contributions/commits
-            contributionsCount = events.filter((event: any) => 
-              event.type === "PushEvent" || 
-              event.type === "PullRequestEvent" || 
-              event.type === "IssuesEvent" ||
-              event.type === "CreateEvent"
-            ).length;
-            
-            // Count commits from PushEvents
-            const pushEvents = events.filter((event: any) => event.type === "PushEvent");
-            totalCommits = pushEvents.reduce((sum: number, event: any) => {
-              return sum + (event.payload?.commits?.length || 0);
-            }, 0);
-          }
-          
-          // Try to get contribution graph data (alternative method)
-          // Using GitHub's contribution graph API via a proxy or direct access
-          try {
-            const contributionResponse = await fetch("https://github-contributions-api.deno.dev/eminemahjoub");
-            if (contributionResponse.ok) {
-              const contributionData = await contributionResponse.json();
-              if (contributionData.totalContributions) {
-                contributionsCount = contributionData.totalContributions;
-              }
-            }
-          } catch (e) {
-            // Fallback to events-based calculation
-            console.log("Using events-based contribution calculation");
-          }
-        } catch (e) {
-          console.log("Could not fetch contribution data", e);
-        }
-        
         setStats({
           followers: userData.followers || 0,
           following: userData.following || 0,
           public_repos: userData.public_repos || 0,
           total_stars: totalStars,
           total_forks: totalForks,
-          contributions: contributionsCount,
-          total_commits: totalCommits,
         });
         
         setLoading(false);
@@ -141,27 +94,15 @@ export const GitHubStats = () => {
       color: "text-yellow-400",
     },
     {
-      label: "Contributions",
-      value: stats.contributions,
-      icon: GitCommit,
-      color: "text-green-400",
-    },
-    {
-      label: "Commits",
-      value: stats.total_commits,
-      icon: TrendingUp,
-      color: "text-purple-400",
-    },
-    {
       label: "Forks",
       value: stats.total_forks,
       icon: GitFork,
-      color: "text-cyan-400",
+      color: "text-green-400",
     },
     {
       label: "Followers",
       value: stats.followers,
-      icon: Eye,
+      icon: TrendingUp,
       color: "text-orange-400",
     },
   ];
@@ -190,7 +131,7 @@ export const GitHubStats = () => {
                 <span className="text-gray-400 text-xs">{item.label}</span>
               </div>
               <div className={`text-2xl font-bold ${item.color}`}>
-                {item.value > 0 ? item.value.toLocaleString() : "0"}
+                {item.value.toLocaleString()}
               </div>
             </div>
           );
