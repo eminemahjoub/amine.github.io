@@ -323,6 +323,11 @@ export const PortfolioBrowser = () => {
               </div>
             </div>
 
+            {/* GitHub Statistics */}
+            <div className="mb-6">
+              <GitHubStats />
+            </div>
+
             {/* Featured Projects */}
             <div className="bg-[#2d2d2d]/80 backdrop-blur-sm rounded-xl p-6 border border-orange-500/20">
               <h3 className="text-xl font-bold text-white mb-4">Featured Projects</h3>
