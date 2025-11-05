@@ -13,6 +13,7 @@ import { PortfolioBrowser } from "./apps/PortfolioBrowser";
 import { TerminalApp } from "./apps/TerminalApp";
 import { useNotifications, NotificationSystem } from "./UbuntuNotification";
 import { GitHubStats } from "./GitHubStats";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export type AppType = "portfolio" | "terminal" | "linkedin" | "github" | "facebook" | "blog" | "resume" | "about" | "projects" | "skills" | "experience" | "education" | "contact" | null;
 
@@ -33,6 +34,7 @@ export const Desktop = () => {
   const [nextZIndex, setNextZIndex] = useState(1);
   const [currentTime, setCurrentTime] = useState(new Date());
   const { notifications, addNotification, removeNotification } = useNotifications();
+  const isMobile = useIsMobile();
 
   // Update time every minute
   useEffect(() => {
@@ -56,19 +58,19 @@ export const Desktop = () => {
     }
 
     let windowConfig = {
-      x: 150 + (windows.length * 30),
-      y: 50 + (windows.length * 30),
-      width: 900,
-      height: 600,
+      x: isMobile ? 0 : 150 + (windows.length * 30),
+      y: isMobile ? 30 : 50 + (windows.length * 30),
+      width: isMobile ? window.innerWidth : 900,
+      height: isMobile ? window.innerHeight - 30 : 600,
     };
 
     let windowTitle = title;
     if (type === "portfolio") {
       windowConfig = {
-        x: 200,
-        y: 80,
-        width: 1000,
-        height: 700,
+        x: isMobile ? 0 : 200,
+        y: isMobile ? 30 : 80,
+        width: isMobile ? window.innerWidth : 1000,
+        height: isMobile ? window.innerHeight - 30 : 700,
       };
       windowTitle = "Browser";
     }
@@ -93,17 +95,17 @@ export const Desktop = () => {
         id: `portfolio-${Date.now()}`,
         type: "portfolio",
         title: "Browser",
-        x: 200,
-        y: 80,
-        width: 1000,
-        height: 700,
+        x: isMobile ? 0 : 200,
+        y: isMobile ? 30 : 80,
+        width: isMobile ? window.innerWidth : 1000,
+        height: isMobile ? window.innerHeight - 30 : 700,
         zIndex: 1,
         minimized: false,
       };
       setWindows([newWindow]);
       setNextZIndex(2);
     }
-  }, []);
+  }, [isMobile]);
 
   const closeWindow = (id: string) => {
     setWindows((prev) => prev.filter((w) => w.id !== id));
@@ -116,15 +118,16 @@ export const Desktop = () => {
   };
 
   const maximizeWindow = (id: string) => {
+    const panelHeight = isMobile ? 30 : 30;
     setWindows((prev) =>
       prev.map((w) =>
         w.id === id
           ? {
               ...w,
               x: 0,
-              y: 30,
+              y: panelHeight,
               width: window.innerWidth,
-              height: window.innerHeight - 30,
+              height: window.innerHeight - panelHeight,
               zIndex: nextZIndex,
             }
           : w
@@ -238,6 +241,7 @@ export const Desktop = () => {
         windows={windows}
         onOpenApp={openApp}
         onFocusWindow={focusWindow}
+        isMobile={isMobile}
       />
     </div>
   );

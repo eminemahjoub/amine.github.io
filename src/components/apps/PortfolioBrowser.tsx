@@ -3,89 +3,92 @@ import { personalInfo, experience, education, projects, research, skills, certif
 import profileImg from "@/amine mahjoub image.png";
 import { Github, Linkedin, Facebook, FileText, Globe, Shield, Briefcase, GraduationCap, Award, X, Calendar, MapPin, ExternalLink } from "lucide-react";
 import { GitHubStats } from "../GitHubStats";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const PortfolioBrowser = () => {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
+  const isMobile = useIsMobile();
+  
   return (
     <div className="w-full h-full flex flex-col bg-[#1a1a1a]">
       {/* Browser Address Bar */}
-      <div className="h-10 bg-[#2d2d2d] border-b border-gray-700 flex items-center px-4 gap-2">
-        <div className="flex gap-1">
-          <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500"></div>
+      <div className={`${isMobile ? 'h-8' : 'h-10'} bg-[#2d2d2d] border-b border-gray-700 flex items-center ${isMobile ? 'px-2' : 'px-4'} gap-2`}>
+        <div className="flex gap-1 flex-shrink-0">
+          <div className={`${isMobile ? 'w-2 h-2' : 'w-3 h-3'} rounded-full bg-red-500`}></div>
+          <div className={`${isMobile ? 'w-2 h-2' : 'w-3 h-3'} rounded-full bg-yellow-500`}></div>
+          <div className={`${isMobile ? 'w-2 h-2' : 'w-3 h-3'} rounded-full bg-green-500`}></div>
         </div>
-        <div className="flex-1 bg-[#1a1a1a] rounded-lg px-3 py-1 text-xs text-gray-400 flex items-center gap-2 ml-4">
-          <Globe className="w-3 h-3" />
-          <span>https://www.aminemahjoub.tech</span>
+        <div className={`flex-1 bg-[#1a1a1a] rounded-lg ${isMobile ? 'px-2 py-0.5' : 'px-3 py-1'} ${isMobile ? 'text-[10px]' : 'text-xs'} text-gray-400 flex items-center gap-2 ${isMobile ? 'ml-2' : 'ml-4'}`}>
+          <Globe className={isMobile ? "w-2.5 h-2.5" : "w-3 h-3"} />
+          <span className={isMobile ? "truncate" : ""}>{isMobile ? "aminemahjoub.tech" : "https://www.aminemahjoub.tech"}</span>
         </div>
       </div>
 
       {/* Browser Content */}
-      <div className="flex-1 overflow-y-auto p-8">
-        <div className="max-w-4xl mx-auto">
+      <div className={`flex-1 overflow-y-auto ${isMobile ? 'p-4' : 'p-8'}`}>
+        <div className={`${isMobile ? 'max-w-full' : 'max-w-4xl'} mx-auto`}>
           {/* Header Section */}
-          <div className="flex items-start gap-8 mb-12">
+          <div className={`flex ${isMobile ? 'flex-col items-center gap-4' : 'items-start gap-8'} ${isMobile ? 'mb-6' : 'mb-12'}`}>
             <img
               src={profileImg}
               alt={personalInfo.name}
-              className="w-32 h-32 rounded-lg object-cover border-2 border-orange-500/50 shadow-lg"
+              className={`${isMobile ? 'w-24 h-24' : 'w-32 h-32'} rounded-lg object-cover border-2 border-orange-500/50 shadow-lg`}
             />
-            <div className="flex-1">
-              <h1 className="text-4xl font-bold text-white mb-2">{personalInfo.name}</h1>
-              <p className="text-orange-400 text-xl mb-6">{personalInfo.title}</p>
+            <div className={`${isMobile ? 'text-center' : 'flex-1'}`}>
+              <h1 className={`${isMobile ? 'text-2xl' : 'text-4xl'} font-bold text-white ${isMobile ? 'mb-1' : 'mb-2'}`}>{personalInfo.name}</h1>
+              <p className={`${isMobile ? 'text-orange-400 text-base' : 'text-orange-400 text-xl'} ${isMobile ? 'mb-4' : 'mb-6'}`}>{personalInfo.title}</p>
               
               {/* Social Links */}
-              <div className="flex gap-3">
+              <div className={`flex ${isMobile ? 'flex-wrap justify-center gap-2' : 'gap-3'}`}>
                 <a
                   href={personalInfo.social.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white text-sm transition-colors flex items-center gap-2"
+                  className={`${isMobile ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'} bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white transition-colors flex items-center gap-2`}
                 >
-                  <Github className="w-4 h-4" />
-                  GitHub
+                  <Github className={isMobile ? "w-3 h-3" : "w-4 h-4"} />
+                  {!isMobile && "GitHub"}
                 </a>
                 <a
                   href={personalInfo.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white text-sm transition-colors flex items-center gap-2"
+                  className={`${isMobile ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'} bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white transition-colors flex items-center gap-2`}
                 >
-                  <Linkedin className="w-4 h-4" />
-                  LinkedIn
+                  <Linkedin className={isMobile ? "w-3 h-3" : "w-4 h-4"} />
+                  {!isMobile && "LinkedIn"}
                 </a>
                 <a
                   href={personalInfo.social.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white text-sm transition-colors flex items-center gap-2"
+                  className={`${isMobile ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'} bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white transition-colors flex items-center gap-2`}
                 >
-                  <Facebook className="w-4 h-4" />
-                  Twitter
+                  <Facebook className={isMobile ? "w-3 h-3" : "w-4 h-4"} />
+                  {!isMobile && "Twitter"}
                 </a>
                 <a
                   href="#"
-                  className="px-4 py-2 bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white text-sm transition-colors flex items-center gap-2"
+                  className={`${isMobile ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'} bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white transition-colors flex items-center gap-2`}
                 >
-                  <Globe className="w-4 h-4" />
-                  Blog
+                  <Globe className={isMobile ? "w-3 h-3" : "w-4 h-4"} />
+                  {!isMobile && "Blog"}
                 </a>
                 <a
                   href={personalInfo.social.credly}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white text-sm transition-colors flex items-center gap-2"
+                  className={`${isMobile ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'} bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white transition-colors flex items-center gap-2`}
                 >
-                  <Award className="w-4 h-4" />
-                  Credly
+                  <Award className={isMobile ? "w-3 h-3" : "w-4 h-4"} />
+                  {!isMobile && "Credly"}
                 </a>
                 <a
                   href="#"
-                  className="px-4 py-2 bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white text-sm transition-colors flex items-center gap-2"
+                  className={`${isMobile ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'} bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white transition-colors flex items-center gap-2`}
                 >
-                  <FileText className="w-4 h-4" />
-                  Resume
+                  <FileText className={isMobile ? "w-3 h-3" : "w-4 h-4"} />
+                  {!isMobile && "Resume"}
                 </a>
               </div>
             </div>
@@ -95,16 +98,16 @@ export const PortfolioBrowser = () => {
           <div className="space-y-4">
             {/* AI & Intelligent Systems Research */}
             <div 
-              className="bg-[#2d2d2d]/80 backdrop-blur-sm rounded-lg p-5 border-l-4 border-orange-500 hover:border-orange-400 hover:bg-[#3d3d3d]/80 transition-all cursor-pointer shadow-lg"
+              className={`bg-[#2d2d2d]/80 backdrop-blur-sm rounded-lg ${isMobile ? 'p-3 border-l-2' : 'p-5 border-l-4'} border-orange-500 hover:border-orange-400 hover:bg-[#3d3d3d]/80 transition-all cursor-pointer shadow-lg`}
               onClick={() => setExpandedCard(expandedCard === "research" ? null : "research")}
             >
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-red-500/20 rounded flex items-center justify-center flex-shrink-0 border border-red-500/30">
-                  <Shield className="w-5 h-5 text-red-400" />
+              <div className={`flex items-start ${isMobile ? 'gap-2' : 'gap-4'}`}>
+                <div className={`${isMobile ? 'w-8 h-8' : 'w-10 h-10'} bg-red-500/20 rounded flex items-center justify-center flex-shrink-0 border border-red-500/30`}>
+                  <Shield className={isMobile ? "w-4 h-4 text-red-400" : "w-5 h-5 text-red-400"} />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-white mb-2">AI & Intelligent Systems Research</h3>
-                  <p className="text-gray-300">
+                <div className="flex-1 min-w-0">
+                  <h3 className={`${isMobile ? 'text-base' : 'text-xl'} font-bold text-white ${isMobile ? 'mb-1' : 'mb-2'}`}>AI & Intelligent Systems Research</h3>
+                  <p className={`${isMobile ? 'text-sm' : ''} text-gray-300`}>
                     {experience.length}+ years developing AI systems, blockchain solutions, and IoT applications. 
                     Research in Smart Cities, CubeSat integration, and predictive systems.
                   </p>
@@ -137,7 +140,7 @@ export const PortfolioBrowser = () => {
                         <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
                           <span className="text-orange-400">📁</span> All Projects ({projects.length})
                         </h4>
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-2'} gap-3`}>
                           {projects.map((project) => (
                             <div key={project.id} className="bg-[#1a1a1a] p-4 rounded border-l-2 border-gray-600 hover:border-orange-500 transition-colors">
                               <div className="flex items-start justify-between mb-2">
@@ -198,15 +201,15 @@ export const PortfolioBrowser = () => {
 
             {/* Professional Experience */}
             <div 
-              className="bg-[#2d2d2d]/80 backdrop-blur-sm rounded-lg p-5 border-l-4 border-yellow-500 hover:border-yellow-400 hover:bg-[#3d3d3d]/80 transition-all cursor-pointer shadow-lg"
+              className={`bg-[#2d2d2d]/80 backdrop-blur-sm rounded-lg ${isMobile ? 'p-3 border-l-2' : 'p-5 border-l-4'} border-yellow-500 hover:border-yellow-400 hover:bg-[#3d3d3d]/80 transition-all cursor-pointer shadow-lg`}
               onClick={() => setExpandedCard(expandedCard === "experience" ? null : "experience")}
             >
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-yellow-500/20 rounded flex items-center justify-center flex-shrink-0 border border-yellow-500/30">
-                  <Briefcase className="w-5 h-5 text-yellow-400" />
+              <div className={`flex items-start ${isMobile ? 'gap-2' : 'gap-4'}`}>
+                <div className={`${isMobile ? 'w-8 h-8' : 'w-10 h-10'} bg-yellow-500/20 rounded flex items-center justify-center flex-shrink-0 border border-yellow-500/30`}>
+                  <Briefcase className={isMobile ? "w-4 h-4 text-yellow-400" : "w-5 h-5 text-yellow-400"} />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-white mb-2">Professional Experience</h3>
+                <div className="flex-1 min-w-0">
+                  <h3 className={`${isMobile ? 'text-base' : 'text-xl'} font-bold text-white ${isMobile ? 'mb-1' : 'mb-2'}`}>Professional Experience</h3>
                   <p className="text-gray-300 mb-2">
                     {experience.length} positions including R&D internships, full-stack development, and AI research.
                   </p>
@@ -248,15 +251,15 @@ export const PortfolioBrowser = () => {
 
             {/* Education */}
             <div 
-              className="bg-[#2d2d2d]/80 backdrop-blur-sm rounded-lg p-5 border-l-4 border-red-500 hover:border-red-400 hover:bg-[#3d3d3d]/80 transition-all cursor-pointer shadow-lg"
+              className={`bg-[#2d2d2d]/80 backdrop-blur-sm rounded-lg ${isMobile ? 'p-3 border-l-2' : 'p-5 border-l-4'} border-red-500 hover:border-red-400 hover:bg-[#3d3d3d]/80 transition-all cursor-pointer shadow-lg`}
               onClick={() => setExpandedCard(expandedCard === "education" ? null : "education")}
             >
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-red-500/20 rounded flex items-center justify-center flex-shrink-0 border border-red-500/30">
-                  <GraduationCap className="w-5 h-5 text-red-400" />
+              <div className={`flex items-start ${isMobile ? 'gap-2' : 'gap-4'}`}>
+                <div className={`${isMobile ? 'w-8 h-8' : 'w-10 h-10'} bg-red-500/20 rounded flex items-center justify-center flex-shrink-0 border border-red-500/30`}>
+                  <GraduationCap className={isMobile ? "w-4 h-4 text-red-400" : "w-5 h-5 text-red-400"} />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-white mb-2">Education</h3>
+                <div className="flex-1 min-w-0">
+                  <h3 className={`${isMobile ? 'text-base' : 'text-xl'} font-bold text-white ${isMobile ? 'mb-1' : 'mb-2'}`}>Education</h3>
                   <p className="text-gray-300">
                     {education.map((edu, idx) => (
                       <span key={edu.id}>
@@ -293,7 +296,7 @@ export const PortfolioBrowser = () => {
                         <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
                           <span className="text-orange-400">📁</span> Certifications ({certifications.length})
                         </h4>
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-2'} gap-3`}>
                           {certifications.map((cert) => (
                             <div key={cert.id} className="bg-[#1a1a1a] p-3 rounded border-l-2 border-gray-600 hover:border-orange-500 transition-colors">
                               <h5 className="text-white font-semibold text-sm mb-1">{cert.title}</h5>
@@ -329,9 +332,9 @@ export const PortfolioBrowser = () => {
             </div>
 
             {/* Featured Projects */}
-            <div className="bg-[#2d2d2d]/80 backdrop-blur-sm rounded-xl p-6 border border-orange-500/20">
-              <h3 className="text-xl font-bold text-white mb-4">Featured Projects</h3>
-              <div className="grid grid-cols-2 gap-4">
+            <div className={`bg-[#2d2d2d]/80 backdrop-blur-sm rounded-xl ${isMobile ? 'p-4' : 'p-6'} border border-orange-500/20`}>
+              <h3 className={`${isMobile ? 'text-lg' : 'text-xl'} font-bold text-white ${isMobile ? 'mb-3' : 'mb-4'}`}>Featured Projects</h3>
+              <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-2'} ${isMobile ? 'gap-3' : 'gap-4'}`}>
                 {projects.filter(p => p.featured).slice(0, 4).map((project) => (
                   <div key={project.id} className="bg-[#1a1a1a] rounded-lg p-4 border border-gray-700 hover:border-orange-500/50 transition-colors">
                     <h4 className="text-white font-semibold mb-2">{project.title}</h4>

@@ -6,9 +6,10 @@ interface UbuntuDockProps {
   windows: Window[];
   onOpenApp: (type: AppType, title: string) => void;
   onFocusWindow: (id: string) => void;
+  isMobile?: boolean;
 }
 
-export const UbuntuDock = ({ windows, onOpenApp, onFocusWindow }: UbuntuDockProps) => {
+export const UbuntuDock = ({ windows, onOpenApp, onFocusWindow, isMobile = false }: UbuntuDockProps) => {
   const apps = [
     { 
       type: "portfolio" as AppType, 
@@ -80,6 +81,40 @@ export const UbuntuDock = ({ windows, onOpenApp, onFocusWindow }: UbuntuDockProp
       onOpenApp(app.type, app.title);
     }
   };
+
+  if (isMobile) {
+    return (
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-50">
+        <div className="bg-black/60 backdrop-blur-md rounded-2xl px-2 py-2 flex flex-row items-center gap-2 shadow-2xl border border-gray-700/50 overflow-x-auto max-w-[calc(100vw-2rem)]">
+          {apps.map((app) => {
+            const isOpen = isWindowOpen(app.type);
+            const IconComponent = app.icon;
+            return (
+              <button
+                key={app.type}
+                onClick={() => handleClick(app)}
+                className={`relative w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-200 flex-shrink-0 ${
+                  isOpen
+                    ? "bg-white/20 scale-110"
+                    : "active:bg-white/10 active:scale-105"
+                }`}
+                title={app.label}
+              >
+                <div
+                  className={`w-10 h-10 ${app.color} rounded-lg flex items-center justify-center text-white shadow-lg`}
+                >
+                  <IconComponent className="w-5 h-5" />
+                </div>
+                {isOpen && (
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-1 bg-white rounded-b-full"></div>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-50">
