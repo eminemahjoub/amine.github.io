@@ -4,6 +4,7 @@ import profileImg from "@/amine mahjoub image.png";
 import { Github, Linkedin, Facebook, FileText, Globe, Shield, Briefcase, GraduationCap, Award, X, Calendar, MapPin, ExternalLink } from "lucide-react";
 import { GitHubStats } from "../GitHubStats";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { getCountryFlag } from "@/utils/countryFlags";
 
 export const PortfolioBrowser = () => {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
@@ -141,14 +142,23 @@ export const PortfolioBrowser = () => {
                           <span className="text-orange-400">📁</span> All Projects ({projects.length})
                         </h4>
                         <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-2'} gap-3`}>
-                          {projects.map((project) => (
-                            <div key={project.id} className="bg-[#1a1a1a] p-4 rounded border-l-2 border-gray-600 hover:border-orange-500 transition-colors">
-                              <div className="flex items-start justify-between mb-2">
-                                <h5 className="text-white font-semibold text-sm">{project.title}</h5>
-                                {project.featured && (
-                                  <span className="bg-orange-500/20 text-orange-400 text-xs px-2 py-0.5 rounded">Featured</span>
-                                )}
-                              </div>
+                          {projects.map((project) => {
+                            const projectWithExtras = project as typeof project & { countryCode?: string };
+                            return (
+                              <div key={project.id} className="bg-[#1a1a1a] p-4 rounded border-l-2 border-gray-600 hover:border-orange-500 transition-colors">
+                                <div className="flex items-start justify-between mb-2">
+                                  <div className="flex items-center gap-2 flex-1">
+                                    <h5 className="text-white font-semibold text-sm">{project.title}</h5>
+                                    {projectWithExtras.countryCode && (
+                                      <span className="text-lg" title={`Country: ${projectWithExtras.countryCode}`}>
+                                        {getCountryFlag(projectWithExtras.countryCode)}
+                                      </span>
+                                    )}
+                                  </div>
+                                  {project.featured && (
+                                    <span className="bg-orange-500/20 text-orange-400 text-xs px-2 py-0.5 rounded">Featured</span>
+                                  )}
+                                </div>
                               <p className="text-gray-300 text-xs mb-2">{project.description}</p>
                               {project.longDescription && (
                                 <p className="text-gray-400 text-xs mb-2">{project.longDescription}</p>
@@ -172,8 +182,9 @@ export const PortfolioBrowser = () => {
                                   View on GitHub
                                 </a>
                               )}
-                            </div>
-                          ))}
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
                       <div>
@@ -219,30 +230,40 @@ export const PortfolioBrowser = () => {
                   </div>
                   {expandedCard === "experience" && (
                     <div className="mt-6 pt-6 border-t border-gray-700 space-y-4">
-                      {experience.map((exp) => (
-                        <div key={exp.id} className="bg-[#1a1a1a] p-4 rounded border-l-2 border-gray-600 hover:border-yellow-500 transition-colors">
-                          <div className="flex items-start justify-between mb-2">
-                            <div className="flex-1">
-                              <h4 className="text-white font-semibold text-lg mb-1">{exp.title}</h4>
-                              <p className="text-orange-400 font-medium">{exp.organization}</p>
+                      {experience.map((exp) => {
+                        const expWithExtras = exp as typeof exp & { countryCode?: string; logo?: string };
+                        return (
+                          <div key={exp.id} className="bg-[#1a1a1a] p-4 rounded border-l-2 border-gray-600 hover:border-yellow-500 transition-colors">
+                            <div className="flex items-start justify-between mb-2">
+                              <div className="flex-1">
+                                <h4 className="text-white font-semibold text-lg mb-1">{exp.title}</h4>
+                                <div className="flex items-center gap-2">
+                                  <p className="text-orange-400 font-medium">{exp.organization}</p>
+                                  {expWithExtras.countryCode && (
+                                    <span className="text-xl" title={`Country: ${expWithExtras.countryCode}`}>
+                                      {getCountryFlag(expWithExtras.countryCode)}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                              <span className="bg-[#2d2d2d] text-orange-400 text-xs px-3 py-1 rounded">
+                                {exp.type}
+                              </span>
                             </div>
-                            <span className="bg-[#2d2d2d] text-orange-400 text-xs px-3 py-1 rounded">
-                              {exp.type}
-                            </span>
+                            <div className="flex items-center gap-4 text-gray-400 text-sm mb-2">
+                              <div className="flex items-center gap-1">
+                                <Calendar className="w-4 h-4" />
+                                <span>{exp.period}</span>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <MapPin className="w-4 h-4" />
+                                <span>{exp.location}</span>
+                              </div>
+                            </div>
+                            <p className="text-gray-300 text-sm">{exp.description}</p>
                           </div>
-                          <div className="flex items-center gap-4 text-gray-400 text-sm mb-2">
-                            <div className="flex items-center gap-1">
-                              <Calendar className="w-4 h-4" />
-                              <span>{exp.period}</span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <MapPin className="w-4 h-4" />
-                              <span>{exp.location}</span>
-                            </div>
-                          </div>
-                          <p className="text-gray-300 text-sm">{exp.description}</p>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   )}
                 </div>

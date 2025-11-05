@@ -35,8 +35,16 @@ const countryFlags: Record<string, string> = {
  */
 export function getCountryFlag(countryCode: string | undefined | null): string {
   if (!countryCode) return "🌐";
-  const upperCode = countryCode.toUpperCase();
-  return countryFlags[upperCode] || "🌐";
+  const upperCode = countryCode.toUpperCase().trim();
+  const flag = countryFlags[upperCode];
+  
+  // Debug: log if flag is not found
+  if (!flag) {
+    console.warn(`Country flag not found for code: ${upperCode}`);
+    return "🌐";
+  }
+  
+  return flag;
 }
 
 /**

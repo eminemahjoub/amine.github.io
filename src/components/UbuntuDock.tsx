@@ -1,5 +1,5 @@
 import { Window, AppType } from "./Desktop";
-import { Globe, Terminal, Linkedin, Github, Facebook, FileText, Briefcase } from "lucide-react";
+import { Globe, Terminal, Linkedin, Github, Facebook, FileText, Briefcase, FolderOpen } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
 
 interface UbuntuDockProps {
@@ -31,6 +31,13 @@ export const UbuntuDock = ({ windows, onOpenApp, onFocusWindow, isMobile = false
       icon: Briefcase, 
       color: "bg-yellow-600",
       label: "Experience"
+    },
+    { 
+      type: "projects" as AppType, 
+      title: "Projects", 
+      icon: FolderOpen, 
+      color: "bg-green-600",
+      label: "Projects"
     },
     { 
       type: "linkedin" as AppType, 
