@@ -399,14 +399,25 @@ Use 'social' command to see social media links.`,
                   </a>
                 </div>
                 <div>
-                  <span className="text-green-400">Twitter:</span>{" "}
+                  <span className="text-green-400">Launchpad:</span>{" "}
                   <a
-                    href={personalInfo.social.twitter}
+                    href={personalInfo.social.launchpad}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-400 hover:underline"
                   >
-                    {personalInfo.social.twitter}
+                    {personalInfo.social.launchpad}
+                  </a>
+                </div>
+                <div>
+                  <span className="text-green-400">Mastodon:</span>{" "}
+                  <a
+                    href={personalInfo.social.mastodon}
+                    target="_blank"
+                    rel="me noopener noreferrer"
+                    className="text-blue-400 hover:underline"
+                  >
+                    {personalInfo.social.mastodon}
                   </a>
                 </div>
               </div>

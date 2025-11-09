@@ -1,5 +1,5 @@
 import { Window, AppType } from "./Desktop";
-import { Globe, Terminal, Linkedin, Github, Facebook, FileText, Briefcase, FolderOpen } from "lucide-react";
+import { Globe, Terminal, Linkedin, Github, Rocket, Share2, FileText, Briefcase, FolderOpen } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
 
 interface UbuntuDockProps {
@@ -56,11 +56,20 @@ export const UbuntuDock = ({ windows, onOpenApp, onFocusWindow, isMobile = false
       external: personalInfo.social.github
     },
     { 
-      type: "facebook" as AppType, 
-      title: "Facebook", 
-      icon: Facebook, 
-      color: "bg-blue-700",
-      label: "Facebook"
+      type: "launchpad" as AppType, 
+      title: "Launchpad", 
+      icon: Rocket, 
+      color: "bg-orange-600",
+      label: "Launchpad",
+      external: personalInfo.social.launchpad
+    },
+    { 
+      type: "mastodon" as AppType, 
+      title: "Mastodon", 
+      icon: Share2, 
+      color: "bg-indigo-600",
+      label: "Mastodon",
+      external: personalInfo.social.mastodon
     },
     { 
       type: "blog" as AppType, 

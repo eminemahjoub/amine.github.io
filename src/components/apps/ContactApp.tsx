@@ -1,5 +1,5 @@
 import { personalInfo } from "@/data/portfolio";
-import { Mail, Phone, MapPin, Linkedin, Github, Twitter, ExternalLink } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Github, Rocket, Share2, ExternalLink } from "lucide-react";
 
 export const ContactApp = () => {
   return (
@@ -48,7 +48,7 @@ export const ContactApp = () => {
 
         <div className="bg-[#2d1b1e] p-5 rounded-lg border border-orange-500/20 md:col-span-2">
           <p className="font-semibold text-white mb-4">Social Media</p>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <a
               href={personalInfo.social.linkedin}
               target="_blank"
@@ -72,13 +72,24 @@ export const ContactApp = () => {
             </a>
 
             <a
-              href={personalInfo.social.twitter}
+              href={personalInfo.social.launchpad}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 p-3 bg-[#3d2b2e] rounded-lg hover:bg-[#4d3b3e] transition-colors group"
             >
-              <Twitter className="h-5 w-5 text-orange-400 group-hover:text-orange-300" />
-              <span className="text-white text-sm">Twitter</span>
+              <Rocket className="h-5 w-5 text-orange-400 group-hover:text-orange-300" />
+              <span className="text-white text-sm">Launchpad</span>
+              <ExternalLink className="h-3 w-3 text-gray-400 ml-auto" />
+            </a>
+
+            <a
+              href={personalInfo.social.mastodon}
+              target="_blank"
+              rel="me noopener noreferrer"
+              className="flex items-center gap-2 p-3 bg-[#3d2b2e] rounded-lg hover:bg-[#4d3b3e] transition-colors group"
+            >
+              <Share2 className="h-5 w-5 text-orange-400 group-hover:text-orange-300" />
+              <span className="text-white text-sm">Mastodon</span>
               <ExternalLink className="h-3 w-3 text-gray-400 ml-auto" />
             </a>
           </div>

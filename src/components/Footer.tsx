@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Rocket, Share2, Mail, Heart } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
 
 export const Footer = () => {
@@ -57,12 +57,20 @@ export const Footer = () => {
                   <Linkedin className="h-5 w-5" />
                 </a>
                 <a
-                  href={personalInfo.social.twitter}
+                  href={personalInfo.social.launchpad}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
                 >
-                  <Twitter className="h-5 w-5" />
+                  <Rocket className="h-5 w-5" />
+                </a>
+                <a
+                  href={personalInfo.social.mastodon}
+                  target="_blank"
+                  rel="me noopener noreferrer"
+                  className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
+                >
+                  <Share2 className="h-5 w-5" />
                 </a>
                 <a
                   href={`mailto:${personalInfo.email}`}

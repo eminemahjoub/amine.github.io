@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { personalInfo, experience, education, projects, research, skills, certifications, awards, publications, community } from "@/data/portfolio";
 import profileImg from "@/amine mahjoub image.png";
-import { Github, Linkedin, Facebook, FileText, Globe, Shield, Briefcase, GraduationCap, Award, X, Calendar, MapPin, ExternalLink } from "lucide-react";
+import { Github, Linkedin, Rocket, Share2, FileText, Globe, Shield, Briefcase, GraduationCap, Award, X, Calendar, MapPin, ExternalLink } from "lucide-react";
 import { GitHubStats } from "../GitHubStats";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { getCountryFlag } from "@/utils/countryFlags";
@@ -59,15 +59,24 @@ export const PortfolioBrowser = () => {
                   <Linkedin className={isMobile ? "w-3 h-3" : "w-4 h-4"} />
                   {!isMobile && "LinkedIn"}
                 </a>
-                <a
-                  href={personalInfo.social.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${isMobile ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'} bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white transition-colors flex items-center gap-2`}
-                >
-                  <Facebook className={isMobile ? "w-3 h-3" : "w-4 h-4"} />
-                  {!isMobile && "Twitter"}
-                </a>
+                       <a
+                         href={personalInfo.social.launchpad}
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         className={`${isMobile ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'} bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white transition-colors flex items-center gap-2`}
+                       >
+                         <Rocket className={isMobile ? "w-3 h-3" : "w-4 h-4"} />
+                         {!isMobile && "Launchpad"}
+                       </a>
+                       <a
+                         href={personalInfo.social.mastodon}
+                         target="_blank"
+                         rel="me noopener noreferrer"
+                         className={`${isMobile ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'} bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white transition-colors flex items-center gap-2`}
+                       >
+                         <Share2 className={isMobile ? "w-3 h-3" : "w-4 h-4"} />
+                         {!isMobile && "Mastodon"}
+                       </a>
                 <a
                   href="#"
                   className={`${isMobile ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'} bg-[#2d2d2d] hover:bg-[#3d3d3d] rounded-lg text-white transition-colors flex items-center gap-2`}

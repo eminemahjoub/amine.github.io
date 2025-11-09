@@ -1,4 +1,4 @@
-import { ArrowDown, Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, Rocket, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { personalInfo } from "@/data/portfolio";
 
@@ -75,12 +75,20 @@ export const HeroSection = () => {
               <Linkedin className="h-5 w-5" />
             </a>
             <a
-              href={personalInfo.social.twitter}
+              href={personalInfo.social.mastodon}
+              target="_blank"
+              rel="me noopener noreferrer"
+              className="p-3 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
+              <Share2 className="h-5 w-5" />
+            </a>
+            <a
+              href={personalInfo.social.launchpad}
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
             >
-              <Twitter className="h-5 w-5" />
+              <Rocket className="h-5 w-5" />
             </a>
             <a
               href={`mailto:${personalInfo.email}`}

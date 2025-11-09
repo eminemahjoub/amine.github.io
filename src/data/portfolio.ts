@@ -11,7 +11,8 @@ export const personalInfo = {
   social: {
     linkedin: "https://linkedin.com/in/eminemahjoub",
     github: "https://github.com/eminemahjoub",
-    twitter: "https://twitter.com/eminemahjoub",
+    mastodon: "https://mastodon.tn/@aminemahjoub",
+    launchpad: "https://launchpad.net/~eminemahjoub",
     credly: "https://www.credly.com/users/aminemahjoub",
   },
 };

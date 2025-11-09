@@ -149,7 +149,7 @@ awards  research  publications  community  contact  social`;
         output = `Contact Information:\n\nEmail: ${personalInfo.email}\nPhone: ${personalInfo.phone}\nLocation: ${personalInfo.location}\n\nUse 'social' command to see social media links.`;
         break;
       case "social":
-        output = `Social Media Links:\n\nLinkedIn: ${personalInfo.social.linkedin}\nGitHub: ${personalInfo.social.github}\nTwitter: ${personalInfo.social.twitter}`;
+        output = `Social Media Links:\n\nLinkedIn: ${personalInfo.social.linkedin}\nGitHub: ${personalInfo.social.github}\nLaunchpad: ${personalInfo.social.launchpad}\nMastodon: ${personalInfo.social.mastodon}`;
         break;
       case "pwd":
         output = "~/portfolio";
